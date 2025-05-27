@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MKT SHOP - Accueil</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="bg-dark text-white">
+    <div class="container d-flex justify-content-between align-items-center py-3">
+      <h1 class="h3 mb-0">MKT SHOP</h1>
+      <nav class="navbar">
+        <a href="#" class="text-white mx-2">Accueil</a>
+        <a href="#produits" class="text-white mx-2">Produits</a>
+        <a href="#panier" class="text-white mx-2">Panier</a>
+        <a href="#apropos" class="text-white mx-2">À propos</a>
+        <a href="#contact" class="text-white mx-2">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner hero-carousel">
+      <div class="carousel-item active">
+        <img src="https://via.placeholder.com/1200x400?text=Bienvenue+chez+MKT+SHOP" class="d-block w-100" alt="Slide 1">
+      </div>
+      <div class="carousel-item">
+        <img src="logo_trialle.PNG" class="d-block w-100" alt="Slide 2">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <main class="container my-5">
+    <section id="produits" class="row">
+      <h2 class="col-12 mb-4 text-center">Nos produits</h2>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="iphone 16 plus.jpg" class="card-img-top" alt="Produit 1">
+          <div class="card-body">
+            <h5 class="card-title">iphone 16 plus</h5>
+            <p class="card-text"> puissant et élégant haute qualite.</p>
+            <p class="fw-bold">600000</p>
+            <p>fcfa</p>
+            <button class="btn btn-primary ajouter-panier w-100">Ajouter au panier</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="airpods-max-4.webp" class="card-img-top" alt="Produit 2">
+          <div class="card-body">
+            <h5 class="card-title">Casque Bluetooth airpod max</h5>
+            <p class="card-text">Son haute qualité avec réduction de bruit.</p>
+            <p class="fw-bold">250000</p>
+            <p>fcfa</p>
+            <button class="btn btn-primary ajouter-panier w-100">Ajouter au panier</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="macbook m2.jpg" class="card-img-top" alt="Produit 3">
+          <div class="card-body">
+            <h5 class="card-title">Macbook M1 M2</h5>
+            <p class="card-text">lordi puissant de chez apple.</p>
+            <p class="fw-bold">750000</p>
+            <p>fcfa</p>
+            <button class="btn btn-primary ajouter-panier w-100">Ajouter au panier</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="panier" class="mt-5">
+      <h2 class="text-center mb-3">Panier</h2>
+      <ul class="list-group mb-3" id="liste-panier"></ul>
+      <p class="fw-bold text-end">Total : <span id="total-panier">0 fcfa</span></p>
+
+      <!-- Formulaire de commande -->
+      <form id="form-commande" class="border p-4 rounded" style="max-width: 600px; margin: auto;">
+        <h3 class="mb-3">Valider la commande</h3>
+
+        <div class="mb-3">
+          <label for="nom-acheteur" class="form-label">Nom complet</label>
+          <input type="text" id="nom-acheteur" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="telephone" class="form-label">Numéro de téléphone</label>
+          <input type="tel" id="telephone" class="form-control" placeholder="+221 77 123 45 67" pattern="^\+?\d{8,15}$" required>
+          <div class="form-text">Entrez un numéro valide pour l'expédition.</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Mode de paiement</label>
+          <select id="mode-paiement" class="form-select" required>
+            <option value="" disabled selected>Choisissez un mode de paiement</option>
+            <option value="carte">Carte bancaire</option>
+            <option value="cash">Cash à la livraison</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Valider la commande</button>
+      </form>
+
+      <div id="confirmation" class="alert alert-success mt-4 d-none"></div>
+    </section>
+
+    <section id="apropos" class="my-5">
+      <h2 class="text-center mb-4">À propos de nous</h2>
+      <p class="text-center">MKT SHOP est une boutique en ligne spécialisée dans la vente de produits électroniques de qualité, à prix compétitifs. Notre mission est de rendre la technologie accessible à tous.</p>
+    </section>
+
+    <section id="contact" class="my-5">
+      <h2 class="text-center mb-4">Contact</h2>
+      <form class="w-75 mx-auto">
+        <div class="mb-3">
+          <label for="nom" class="form-label">Nom</label>
+          <input type="text" class="form-control" id="nom" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Message</label>
+          <textarea class="form-control" id="message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="bg-dark text-white text-center py-4">
+    <p class="mb-0">&copy; 2025 MKT SHOP. Tous droits réservés.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MKT SHOP - Accueil</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="bg-dark text-white">
+    <div class="container d-flex justify-content-between align-items-center py-3">
+      <h1 class="h3 mb-0">MKT SHOP</h1>
+      <nav class="navbar">
+        <a href="#" class="text-white mx-2">Accueil</a>
+        <a href="#produits" class="text-white mx-2">Produits</a>
+        <a href="#panier" class="text-white mx-2">Panier</a>
+        <a href="#apropos" class="text-white mx-2">À propos</a>
+        <a href="#contact" class="text-white mx-2">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner hero-carousel">
+      <div class="carousel-item active">
+        <img src="https://via.placeholder.com/1200x400?text=Bienvenue+chez+MKT+SHOP" class="d-block w-100" alt="Slide 1">
+      </div>
+      <div class="carousel-item">
+        <img src="https://via.placeholder.com/1200x400?text=Offres+exceptionnelles+sur+les+produits+tech" class="d-block w-100" alt="Slide 2">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <main class="container my-5">
+    <section id="produits" class="row">
+      <h2 class="col-12 mb-4 text-center">Nos produits</h2>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="iphone 16 plus.jpg" class="card-img-top" alt="Produit 1">
+          <div class="card-body">
+            <h5 class="card-title">iphone 16 plus</h5>
+            <p class="card-text">Un smartphone puissant et élégant.</p>
+            <p class="fw-bold">600000</p>
+            <p>fcfa</p>
+            <button class="btn btn-primary ajouter-panier w-100">Ajouter au panier</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="airpods-max-4.webp" class="card-img-top" alt="Produit 2">
+          <div class="card-body">
+            <h5 class="card-title">Casque Bluetooth airpod max</h5>
+            <p class="card-text">Son haute qualité avec réduction de bruit.</p>
+            <p class="fw-bold">250000</p>
+            <p>fcfa</p>
+            <button class="btn btn-primary ajouter-panier w-100">Ajouter au panier</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="macbook m2.jpg" class="card-img-top" alt="Produit 3">
+          <div class="card-body">
+            <h5 class="card-title">Macbook M1 M2</h5>
+            <p class="card-text">Suivi de santé et notifications en temps réel.</p>
+            <p class="fw-bold">750000</p>
+            <p>fcfa</p>
+            <button class="btn btn-primary ajouter-panier w-100">Ajouter au panier</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="panier" class="mt-5">
+      <h2 class="text-center mb-3">Panier</h2>
+      <ul class="list-group mb-3" id="liste-panier"></ul>
+      <p class="fw-bold text-end">Total : <span id="total-panier">0 fcfa</span></p>
+
+      <!-- Formulaire de commande -->
+      <form id="form-commande" class="border p-4 rounded" style="max-width: 600px; margin: auto;">
+        <h3 class="mb-3">Valider la commande</h3>
+
+        <div class="mb-3">
+          <label for="nom-acheteur" class="form-label">Nom complet</label>
+          <input type="text" id="nom-acheteur" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="telephone" class="form-label">Numéro de téléphone</label>
+          <input type="tel" id="telephone" class="form-control" placeholder="+221 77 123 45 67" pattern="^\+?\d{8,15}$" required>
+          <div class="form-text">Entrez un numéro valide pour l'expédition.</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Mode de paiement</label>
+          <select id="mode-paiement" class="form-select" required>
+            <option value="" disabled selected>Choisissez un mode de paiement</option>
+            <option value="carte">Carte bancaire</option>
+            <option value="cash">Cash à la livraison</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Valider la commande</button>
+      </form>
+
+      <div id="confirmation" class="alert alert-success mt-4 d-none"></div>
+    </section>
+
+    <section id="apropos" class="my-5">
+      <h2 class="text-center mb-4">À propos de nous</h2>
+      <p class="text-center">MKT SHOP est une boutique en ligne spécialisée dans la vente de produits électroniques de qualité, à prix compétitifs. Notre mission est de rendre la technologie accessible à tous.</p>
+    </section>
+
+    <section id="contact" class="my-5">
+      <h2 class="text-center mb-4">Contact</h2>
+      <form class="w-75 mx-auto">
+        <div class="mb-3">
+          <label for="nom" class="form-label">Nom</label>
+          <input type="text" class="form-control" id="nom" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Message</label>
+          <textarea class="form-control" id="message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="bg-dark text-white text-center py-4">
+    <p class="mb-0">&copy; 2025 MKT SHOP. Tous droits réservés.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
