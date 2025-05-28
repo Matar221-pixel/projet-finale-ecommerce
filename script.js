@@ -1,90 +1,95 @@
-const boutonsAjouter = document.querySelectorAll('.ajouter-panier');
+// Initialisation panier vide
+let panier = [];
+
+// Sélection des éléments importants
 const listePanier = document.getElementById('liste-panier');
 const totalPanier = document.getElementById('total-panier');
 const formCommande = document.getElementById('form-commande');
 const confirmation = document.getElementById('confirmation');
 
-let panier = [];
-let total = 0;
-
-function formatPrix(fcfa) {
-  return fcfa.toLocaleString('fr-FR') + ' fcfa';
+// Ajouter un produit au panier
+function ajouterAuPanier(nom, prix) {
+  // Vérifie si produit déjà dans le panier
+  const produitExist = panier.find(item => item.nom === nom);
+  if (produitExist) {
+    produitExist.quantite++;
+  } else {
+    panier.push({ nom, prix: Number(prix), quantite: 1 });
+  }
+  afficherPanier();
 }
 
-boutonsAjouter.forEach(bouton => {
-  bouton.addEventListener('click', () => {
-    const produit = bouton.closest('.card');
-    const nom = produit.querySelector('.card-title').textContent;
-    const prixTexte = produit.querySelector('.fw-bold').textContent;
-    const prix = parseInt(prixTexte.replace(/\D/g, ''), 10); // enlever tout sauf chiffres
-
-    // Ajouter produit au panier
-    panier.push({ nom, prix });
-
-    // Ajouter à la liste affichée
-    const li = document.createElement('li');
-    li.className = 'list-group-item d-flex justify-content-between align-items-center';
-    li.textContent = `${nom} - ${formatPrix(prix)}`;
-
-    const btnSupprimer = document.createElement('button');
-    btnSupprimer.className = 'btn btn-sm btn-danger';
-    btnSupprimer.textContent = 'Supprimer';
-    btnSupprimer.addEventListener('click', () => {
-      listePanier.removeChild(li);
-      panier = panier.filter(item => item !== panier.find(p => p.nom === nom && p.prix === prix));
-      calculerTotal();
-    });
-
-    li.appendChild(btnSupprimer);
-    listePanier.appendChild(li);
-
-    calculerTotal();
-  });
-});
-
-function calculerTotal() {
-  total = panier.reduce((acc, item) => acc + item.prix, 0);
-  totalPanier.textContent = formatPrix(total);
-}
-
-formCommande.addEventListener('submit', e => {
-  e.preventDefault();
+// Affiche le panier dans la page
+function afficherPanier() {
+  listePanier.innerHTML = '';
 
   if (panier.length === 0) {
-    alert('Votre panier est vide ! Ajoutez des produits avant de valider la commande.');
+    listePanier.innerHTML = '<li class="list-group-item text-center">Votre panier est vide</li>';
+    totalPanier.textContent = '0 fcfa';
     return;
   }
 
+  let total = 0;
+  panier.forEach((item, index) => {
+    const prixTotalItem = item.prix * item.quantite;
+    total += prixTotalItem;
+
+    const li = document.createElement('li');
+    li.className = 'list-group-item d-flex justify-content-between align-items-center';
+    li.innerHTML = `
+      <div>
+        <strong>${item.nom}</strong> x ${item.quantite}
+      </div>
+      <div>
+        ${prixTotalItem} fcfa
+        <button class="btn btn-sm btn-danger ms-3" data-index="${index}">Supprimer</button>
+      </div>
+    `;
+
+    listePanier.appendChild(li);
+  });
+
+  totalPanier.textContent = `${total} fcfa`;
+
+  // Ajout des événements sur les boutons supprimer
+  const btnsSupprimer = listePanier.querySelectorAll('button');
+  btnsSupprimer.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = btn.getAttribute('data-index');
+      panier.splice(idx, 1);
+      afficherPanier();
+    });
+  });
+}
+
+// Écoute sur les boutons Ajouter au panier
+document.querySelectorAll('.ajouter-panier').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const nom = btn.getAttribute('data-nom');
+    const prix = btn.getAttribute('data-prix');
+    ajouterAuPanier(nom, prix);
+  });
+});
+
+// Gestion du formulaire de commande
+formCommande.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  if (panier.length === 0) {
+    alert('Votre panier est vide, ajoutez des produits avant de valider la commande.');
+    return;
+  }
+
+  // Récupérer les infos
   const nomAcheteur = document.getElementById('nom-acheteur').value.trim();
   const telephone = document.getElementById('telephone').value.trim();
   const modePaiement = document.getElementById('mode-paiement').value;
 
-  // Simple validation téléphone (peut être améliorée)
-  const telRegex = /^\+?\d{8,15}$/;
-  if (!telRegex.test(telephone)) {
-    alert('Veuillez entrer un numéro de téléphone valide.');
-    return;
-  }
-
-  if (!modePaiement) {
-    alert('Veuillez choisir un mode de paiement.');
+  // Validation simple
+  if (!nomAcheteur || !telephone || !modePaiement) {
+    alert('Veuillez remplir tous les champs obligatoires.');
     return;
   }
 
   // Afficher confirmation
-  confirmation.classList.remove('d-none');
-  confirmation.innerHTML = `
-    <h4>Commande validée !</h4>
-    <p><strong>Nom :</strong> ${nomAcheteur}</p>
-    <p><strong>Téléphone :</strong> ${telephone}</p>
-    <p><strong>Mode de paiement :</strong> ${modePaiement === 'carte' ? 'Carte bancaire' : 'Cash à la livraison'}</p>
-    <p><strong>Total à payer :</strong> ${formatPrix(total)}</p>
-    <p>Merci pour votre achat chez MKT SHOP !</p>
-  `;
-
-  // Réinitialiser panier et formulaire
-  panier = [];
-  listePanier.innerHTML = '';
-  calculerTotal();
-  formCommande.reset();
-});
+  confirmation.textContent = `Merci ${nomAcheteur} pour votre commande de

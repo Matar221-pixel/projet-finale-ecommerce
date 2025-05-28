@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MKT SHOP - Produits</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="bg-dark text-white">
+    <div class="container d-flex justify-content-between align-items-center py-3">
+      <h1 class="h3 mb-0">MKT SHOP</h1>
+      <nav class="navbar">
+        <a href="index.html" class="text-white mx-2">Accueil</a>
+        <a href="produits.html" class="text-white mx-2">Produits</a>
+        <a href="panier.html" class="text-white mx-2">Panier</a>
+        <a href="apropos.html" class="text-white mx-2">À propos</a>
+        <a href="contact.html" class="text-white mx-2">Contact</a>
+      </nav>
+    </div class="carousel-item">
+    <img src="PRODUIT APPLE.jpg" class="d-block w-100" alt="Slide 1">
+  </header>
+
+  <main class="container my-5">
+    <section id="produits" class="row">
+      <h2 class="col-12 mb-4 text-center">Nos produits</h2>
+      
+      <!-- Produit 1 -->
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="iphone 16 plus.jpg" class="card-img-top" alt="Produit 1" />
+          <div class="card-body">
+            <h5 class="card-title">iphone 16 plus</h5>
+            <p class="card-text">Un smartphone puissant et élégant.</p>
+            <p class="fw-bold">600000 fcfa</p>
+            <button class="btn btn-primary ajouter-panier w-100" data-nom="iphone 16 plus" data-prix="600000">Ajouter au panier</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produit 2 -->
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="airpods-max-4.webp" class="card-img-top" alt="Produit 2" />
+          <div class="card-body">
+            <h5 class="card-title">Casque Bluetooth airpod max</h5>
+            <p class="card-text">Son haute qualité avec réduction de bruit.</p>
+            <p class="fw-bold">250000 fcfa</p>
+            <button class="btn btn-primary ajouter-panier w-100" data-nom="Casque Bluetooth airpod max" data-prix="250000">Ajouter au panier</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produit 3 -->
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="macbook m2.jpg" class="card-img-top" alt="Produit 3" />
+          <div class="card-body">
+            <h5 class="card-title">Macbook M1 M2</h5>
+            <p class="card-text">Ordinateur puissant de chez Apple.</p>
+            <p class="fw-bold">750000 fcfa</p>
+            <button class="btn btn-primary ajouter-panier w-100" data-nom="Macbook M1 M2" data-prix="750000">Ajouter au panier</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-dark text-white text-center py-4">
+    <p class="mb-0">&copy; 2025 MKT SHOP. Tous droits réservés.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
